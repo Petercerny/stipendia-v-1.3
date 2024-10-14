@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testovací stránka</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+        }
+        /* Update box styles */
+        .update-box {
+            width: 90%;
+            max-width: 400px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000; /* Ensures it's on top */
+        }
+        .update-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .version-number {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .toggle-updates {
+            cursor: pointer;
+            color: #007bff;
+            background: none;
+            border: none;
+            font-size: 1em;
+        }
+        .version-info {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .old-updates {
+            display: none;
+            margin-top: 20px;
+        }
+        .old-update {
+            margin-bottom: 10px;
+        }
+        .old-update-title {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+  <script type="module">
+  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
+  Chatbot.init({
+    chatflowid: 'cb27d024-d3b6-4f9c-bad1-1f4aed2f21a3',
+    apiHost: 'https://flowise-novy.onrender.com',
+    chatflowConfig: {
+      // topK: 2
+    },
+    observersConfig: {
+      // (optional) Allows you to execute code in parent based upon signal observations within the chatbot.
+      observeUserInput: (userInput) => {
+        console.log({ userInput });
+      },
+      observeMessages: (messages) => {
+        console.log({ messages });
+      },
+      observeLoading: (loading) => {
+        console.log({ loading });
+      },
+    },
+    theme: {
+      button: {
+        backgroundColor: '#c73c81',
+        right: 20,
+        bottom: 20,
+        size: 48,
+        dragAndDrop: true,
+        iconColor: 'white',
+        customIconSrc: 'https://github.com/Petercerny/stipendia/blob/main/N%C3%A1vrh_bez_n%C3%A1zvu-removebg-preview.png?raw=true',
+        autoWindowOpen: {
+          autoOpen: true,
+          openDelay: 2,
+          autoOpenOnMobile: false,
+        },
+      },
+      tooltip: {
+        showTooltip: true,
+        tooltipMessage: 'Zdravím 👋!',
+        tooltipBackgroundColor: 'black',
+        tooltipTextColor: 'white',
+        tooltipFontSize: 16,
+      },
+      chatWindow: {
+        showTitle: true,
+        showAgentMessages: false,
+        title: 'ZČU Bot',
+        titleAvatarSrc: 'https://github.com/Petercerny/stipendia/blob/main/N%C3%A1vrh_bez_n%C3%A1zvu-removebg-preview.png?raw=true',
+        welcomeMessage: 'Zdravím! S čím ti mohu dnes poradit?',
+        errorMessage: 'Ajaj někde se stala chyba',
+        backgroundColor: '#ffffff',
+        height: 700,
+        width: 400,
+        fontSize: 16,
+        starterPromptFontSize: 15,
+        botMessage: {
+          backgroundColor: '#f7f8ff',
+          textColor: '#303235',
+          showAvatar: true,
+          avatarSrc: 'https://raw.githubusercontent.com/Petercerny/obrazky/main/bot.png',
+        },
+        userMessage: {
+          backgroundColor: '#c73c81',
+          textColor: '#ffffff',
+          showAvatar: true,
+          avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png',
+        },
+        textInput: {
+          placeholder: 'Napište svůj dotaz',
+          backgroundColor: '#ffffff',
+          textColor: '#303235',
+          sendButtonColor: '#c73c81',
+          maxChars: 100,
+          maxCharsWarningMessage: 'Překročili jste limit znaků. Zadejte prosím méně než 100 znaků.',
+          autoFocus: true,
+          sendMessageSound: false,
+          receiveMessageSound: false,
+        },
+        feedback: {
+          color: '#303235',
+        },
+           footer: {
+                    textColor: '#303235',
+                    text: '',
+                    company: '',
+                    companyLink: '',
+                },
+      },
+    },
+  });
+</script>
+
+    <h1>Testovací stránka</h1>
+
+    <!-- Update Box HTML -->
+    <div class="update-box">
+      <div class="update-header">
+        <span class="version-number">Aktuální Verze v1.2</span>
+        <button class="toggle-updates" onclick="toggleUpdates()">Zobrazit starší aktualizace</button>
+      </div>
+      
+      <div class="version-info">
+        - Přidání základních informací týkající se IPC do databáze znalostí.<br>
+        - Přidání kontaktních informací IPC na konec zprávy.<br>
+        - Úprava systémové zprávy chatbota pro zlepšení odpovědí. ##(Využívání databáze pořád)
+      </div>
+      
+      <div class="old-updates" id="oldUpdates">
+        <div class="old-update">
+          <div class="old-update-title">Verze v1.1</div>
+          <div class="old-update-info">
+            - Přidání dalších starter prompts. <br>
+            - Přidání více informací týkající se postupu podání žádosti na ubytovací a sociální stipendium. <br>
+            - Snížení temperature llm pro získání determinističtější a pravděpodobnější odpovědi. ##(0,3)
+          </div>
+        </div>
+        <div class="old-update">
+          <div class="old-update-title">Verze v1.0 </div>
+          <div class="old-update-info"> První verze </div>
+        </div>
+        <!-- Add more updates as needed -->
+      </div>
+    </div>
+
+    <script>
+      function toggleUpdates() {
+        const updatesDiv = document.getElementById('oldUpdates');
+        const toggleButton = document.querySelector('.toggle-updates');
+        
+        if (updatesDiv.style.display === 'none' || updatesDiv.style.display === '') {
+          updatesDiv.style.display = 'block';
+          toggleButton.textContent = 'Skrýt starší aktualizace';
+        } else {
+          updatesDiv.style.display = 'none';
+          toggleButton.textContent = 'Zobrazit starší aktualizace';
+        }
+      }
+    </script>
+</body>
+</html>

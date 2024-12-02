@@ -70,7 +70,7 @@
   <script type="module">
   import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
-    chatflowid: 'cb27d024-d3b6-4f9c-bad1-1f4aed2f21a3',
+    chatflowid: '63ed7a63-a965-421e-86e3-2269d714ef89',
     apiHost: 'https://flowise-novy.onrender.com',
     chatflowConfig: {
       // topK: 2
@@ -158,22 +158,30 @@
   });
 </script>
 
-    <h1>Testovací stránka V1.2</h1>
+    <h1>Testovací stránka V1.3</h1>
 
     <!-- Update Box HTML -->
     <div class="update-box">
       <div class="update-header">
-        <span class="version-number">Aktuální Verze v1.2</span>
+        <span class="version-number">Aktuální Verze v1.3</span>
         <button class="toggle-updates" onclick="toggleUpdates()">Zobrazit starší aktualizace</button>
       </div>
       
       <div class="version-info">
+        - Úprava systému a vytvoření hlášky pro situace, kdy by chatbot neměl odpovídat z důvodu nedostatku dat pro vytvoření odpovědi, což by mělo snížit procento halucinací.<br>
+        - Aktualizace systému Flowise - serveru<br>
+        - Úprava uživatelského rozhraní
+      </div>
+      
+      <div class="old-updates" id="oldUpdates">
+           <div class="old-update">
+          <div class="old-update-title">Verze v1.2</div>
+          <div class="old-update-info">
         - Přidání základních informací týkající se IPC do databáze znalostí.<br>
         - Přidání kontaktních informací IPC na konec zprávy.<br>
         - Úprava systémové zprávy chatbota pro zlepšení odpovědí. ##(Využívání databáze pořád)
       </div>
-      
-      <div class="old-updates" id="oldUpdates">
+        </div>
         <div class="old-update">
           <div class="old-update-title">Verze v1.1</div>
           <div class="old-update-info">
